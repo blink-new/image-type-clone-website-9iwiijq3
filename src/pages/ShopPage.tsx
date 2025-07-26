@@ -442,14 +442,7 @@ const ShopPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-8">
           {/* Filters Sidebar */}
-          <AnimatePresence>
-            {(showFilters || window.innerWidth >= 1024) && (
-              <motion.div
-                initial={{ x: -300, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -300, opacity: 0 }}
-                className="w-80 bg-white rounded-lg shadow-sm p-6 h-fit sticky top-24"
-              >
+          <div className={`w-80 bg-white rounded-lg shadow-sm p-6 h-fit sticky top-24 ${showFilters ? 'block' : 'hidden'} lg:block`}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold">Filters</h3>
                   <div className="flex items-center gap-2">
@@ -565,9 +558,7 @@ const ShopPage = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
 
           {/* Products Grid */}
           <div className="flex-1">

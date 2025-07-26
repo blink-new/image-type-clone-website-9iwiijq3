@@ -217,8 +217,9 @@ const brands = [
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const { addItem } = useCart()
-  const { addItem: addToWishlist, removeItem: removeFromWishlist, items: wishlistItems } = useWishlist()
+  const { addToCart } = useCart()
+  const { addToWishlist, removeFromWishlist, state: wishlistState } = useWishlist()
+  const wishlistItems = wishlistState.items
 
   // Auto-play hero carousel
   useEffect(() => {
@@ -237,12 +238,12 @@ export default function HomePage() {
   }, [])
 
   const handleAddToCart = (product: any) => {
-    addItem({
+    addToCart({
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
-      quantity: 1
+      category: product.category
     })
     toast.success(`${product.name} added to cart!`)
   }
@@ -257,7 +258,11 @@ export default function HomePage() {
         id: product.id,
         name: product.name,
         price: product.price,
-        image: product.image
+        originalPrice: product.originalPrice,
+        image: product.image,
+        category: product.category,
+        rating: product.rating,
+        discount: Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
       })
       toast.success('Added to wishlist!')
     }

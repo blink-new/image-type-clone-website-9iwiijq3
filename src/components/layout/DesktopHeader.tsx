@@ -29,11 +29,11 @@ export default function DesktopHeader() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const navigate = useNavigate()
-  const { items } = useCart()
-  const { items: wishlistItems } = useWishlist()
+  const { state } = useCart()
+  const { state: wishlistState } = useWishlist()
   
-  const cartItemsCount = items.reduce((sum, item) => sum + item.quantity, 0)
-  const wishlistCount = wishlistItems.length
+  const cartItemsCount = state.itemCount
+  const wishlistCount = wishlistState.items.length
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
