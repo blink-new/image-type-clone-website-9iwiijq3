@@ -6,5 +6,18 @@ export const useCart = () => {
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
   }
-  return context;
+  
+  const { state, addToCart, removeFromCart, updateQuantity, clearCart } = context;
+  
+  return {
+    items: state.items,
+    total: state.total,
+    itemCount: state.itemCount,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    getCartTotal: () => state.total,
+    getCartCount: () => state.itemCount,
+  };
 };

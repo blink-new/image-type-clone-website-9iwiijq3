@@ -6,5 +6,15 @@ export const useWishlist = () => {
   if (!context) {
     throw new Error('useWishlist must be used within a WishlistProvider');
   }
-  return context;
+  
+  const { state, addToWishlist, removeFromWishlist, clearWishlist, isInWishlist } = context;
+  
+  return {
+    items: state.items,
+    addToWishlist,
+    removeFromWishlist,
+    clearWishlist,
+    isInWishlist,
+    getWishlistCount: () => state.items.length,
+  };
 };

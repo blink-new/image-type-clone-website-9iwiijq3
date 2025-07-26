@@ -48,8 +48,8 @@ const navItems = [
 
 export default function MobileBottomNav() {
   const location = useLocation()
-  const { state } = useCart()
-  const cartItemsCount = state.itemCount
+  const { getCartCount } = useCart()
+  const cartItemsCount = getCartCount()
 
   return (
     <motion.div
